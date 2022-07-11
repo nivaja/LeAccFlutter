@@ -1,0 +1,28 @@
+name: leacc_pos
+version: 1.0.0+1
+publish_to: none
+description: POS for LeAcc
+environment: 
+  sdk: '>=2.17.3 <3.0.0'
+
+dependencies: 
+  path_provider: ^2.0.9
+  dio: ^4.0.6
+  dio_cookie_manager: ^2.0.0
+  http: ^0.13.4
+  cookie_jar: 3.0.1
+  async_button_builder: ^2.3.0+1
+  cupertino_icons: ^1.0.2
+  flutter_datetime_picker: ^1.5.1
+  get: 4.6.5
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+
