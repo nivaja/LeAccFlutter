@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:leacc_pos/app/modules/http/http.dart';
 
 import '../../common/views/action_button.dart';
 import '../../common/views/input_field_widget.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+   LoginView({Key? key}) : super(key: key);
+  final  serverController = TextEditingController();
+  final  emailController = TextEditingController();
+   final  passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +35,19 @@ class LoginView extends GetView<LoginController> {
               SizedBox(
                 height: 30,
               ),
-              FrappeTextField('Server Address', Icon(Icons.adf_scanner)),
+              FrappeTextField(controller:serverController,'Server Address', Icon(Icons.adf_scanner)),
               Padding(padding: EdgeInsets.all(12)),
-              FrappeTextField('Username', Icon(Icons.person)),
+              FrappeTextField(controller: emailController,'Username', Icon(Icons.person)),
               Padding(padding: EdgeInsets.all(12)),
-              FrappeTextField('Password', Icon(Icons.lock)),
+              FrappeTextField(controller: passwordController,'Password', Icon(Icons.lock),obscureText: true,),
               SizedBox(
                 height: 30,
               ),
-              FrappeNavigationButton('Login'),
+              FrappeNavigationButton(buttonText: 'Login',onPressed: () async{
+                print(passwordController.text.toString());
+                await setBaseUrl(serverController.text);
+
+              },),
             ],
           ),
         ),

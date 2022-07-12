@@ -16,7 +16,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
-  static const List<Widget> widgetOptions = <Widget>[
+  static  List<Widget> widgetOptions = <Widget>[
     LoginView(),
     CustomerView(),
     SalesOrderView(),

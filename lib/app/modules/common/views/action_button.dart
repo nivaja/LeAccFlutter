@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class FrappeNavigationButton extends StatelessWidget {
   late String buttonText;
+  Function onPressed;
 
-  FrappeNavigationButton(this.buttonText);
+  FrappeNavigationButton({required this.buttonText,required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class FrappeNavigationButton extends StatelessWidget {
           width: 140,
           height: 50,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed:()=>onPressed(),
             style: ElevatedButton.styleFrom(
               primary: Colors.blue[600],
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
