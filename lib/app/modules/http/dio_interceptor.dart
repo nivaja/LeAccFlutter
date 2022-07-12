@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' as getx;
 
 class DioInterceptor extends InterceptorsWrapper{
   @override
@@ -19,7 +20,30 @@ class DioInterceptor extends InterceptorsWrapper{
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     print("Response --> "+response.data.toString());
+    if (
+        response.data != null &&
+        response.data["message"] != null) {
+      getx.Get.defaultDialog(
+          title: response.statusMessage.toString(),
+          middleText: response.data["message"].toString()
+      );
+
+    }
+    switch(response.statusCode){
+      case 201:
+        getDialog('Created'); break;
+      case 401:
+        getDialog(response.statusMessage);break;
+      case 400:
+        getDialog(response.statusMessage);break;
+    }
     super.onResponse(response, handler);
   }
 
+  getDialog(String? msg){
+    return getx.Get.defaultDialog(
+        title: msg??'Error',
+
+    );
+  }
 }

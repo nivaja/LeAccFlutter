@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:leacc_pos/app/modules/http/http.dart';
+import 'package:leacc_pos/app/modules/login/providers/login_provider.dart';
 
 import '../../common/views/action_button.dart';
 import '../../common/views/input_field_widget.dart';
@@ -44,10 +44,9 @@ class LoginView extends GetView<LoginController> {
                 height: 30,
               ),
               FrappeNavigationButton(buttonText: 'Login',onPressed: () async{
-                print(passwordController.text.toString());
-                await setBaseUrl(serverController.text);
-
-              },),
+                LoginProvider().post(server: serverController.text, usr: emailController.text, pwd: passwordController.text);
+                },
+              ),
             ],
           ),
         ),
