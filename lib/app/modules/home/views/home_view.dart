@@ -4,6 +4,7 @@ import 'package:leacc_pos/app/modules/ledger/views/ledger_view.dart';
 import 'package:leacc_pos/app/modules/payment/views/payment_view.dart';
 import 'package:leacc_pos/app/modules/sales_order/views/sales_order_view.dart';
 
+import '../../login/views/login_view.dart';
 import '../../sales/views/sales_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -16,6 +17,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
   static const List<Widget> widgetOptions = <Widget>[
+    LoginView(),
     CustomerView(),
     SalesOrderView(),
     PaymentView(),
@@ -40,6 +42,7 @@ class _HomeViewState extends State<HomeView> {
         selectedItemColor: Colors.blue,
         onTap: (index) => setState(() => currentIndex = index),
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Login'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Customer'),
           BottomNavigationBarItem(
               icon: Icon(Icons.edit_calendar), label: 'Sales Order'),
