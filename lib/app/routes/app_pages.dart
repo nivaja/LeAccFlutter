@@ -6,6 +6,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/ledger/bindings/ledger_binding.dart';
 import '../modules/ledger/views/ledger_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
 import '../modules/payment/bindings/payment_binding.dart';
 import '../modules/payment/views/payment_view.dart';
 import '../modules/sales/bindings/sales_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.SALES_ORDER,
       page: () => const SalesOrderView(),
       binding: SalesOrderBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
     ),
   ];
 }
