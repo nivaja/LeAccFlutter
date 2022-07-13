@@ -10,5 +10,5 @@ initApiConfig() async{
 
 setBaseUrl(String baseUrl) async{
   await GetStorage().write('baseUrl', '$baseUrl/api');
-  await DioClient.init(baseUrl);
+  await DioClient.init('$baseUrl/api');
 }

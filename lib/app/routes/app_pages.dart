@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../modules/customer/bindings/customer_binding.dart';
+import '../modules/customer/views/customer_list_view.dart';
 import '../modules/customer/views/customer_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -34,6 +35,11 @@ class AppPages {
       binding: CustomerBinding(),
     ),
     GetPage(
+      name: _Paths.CUSTOMER_LIST,
+      page: () => const CustomerListView(),
+      binding: CustomerBinding(),
+    ),
+    GetPage(
       name: _Paths.PAYMENT,
       page: () => const PaymentView(),
       binding: PaymentBinding(),
@@ -55,7 +61,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () =>  LoginView(),
+      page: () => LoginView(),
       binding: LoginBinding(),
     ),
   ];

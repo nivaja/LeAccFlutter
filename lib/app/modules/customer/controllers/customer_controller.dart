@@ -1,12 +1,17 @@
 import 'package:get/get.dart';
+import 'package:leacc_pos/app/modules/customer/customer_model_model.dart';
+import 'package:leacc_pos/app/modules/customer/providers/customer_provider.dart';
 
-class CustomerController extends GetxController {
+class CustomerController extends GetxController{
   //TODO: Implement CustomerController
 
-  final count = 0.obs;
+  RxList<Customer> customerList = <Customer>[].obs;
+  Rx<bool> isLoading = false.obs;
+  Rx<bool> endOfReults = false.obs;
   @override
-  void onInit() {
+  void onInit() async{
     super.onInit();
+   getCustomers();
   }
 
   @override
@@ -19,5 +24,21 @@ class CustomerController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void refresh(){
+    customerList.clear();
+    getCustomers();
+
+  }
+
+  void getCustomers({int start=0, int length=10}) async{
+   try{
+     isLoading(true);
+     List<Customer> customers = await CustomerProvider().getCustomerList(start,length);
+     customers.length == 0 ? endOfReults(true) : endOfReults(false);
+     customerList.addAll(customers);
+   //  return customers;
+   }finally{
+     isLoading(false);
+   }
+  }
 }

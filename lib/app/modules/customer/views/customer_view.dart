@@ -12,6 +12,7 @@ class CustomerView extends GetView<CustomerController> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add New Customer'),

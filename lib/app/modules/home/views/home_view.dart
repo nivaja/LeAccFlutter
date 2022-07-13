@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leacc_pos/app/modules/customer/views/customer_view.dart';
+import 'package:leacc_pos/app/modules/customer/views/customer_list_view.dart';
 import 'package:leacc_pos/app/modules/ledger/views/ledger_view.dart';
 import 'package:leacc_pos/app/modules/payment/views/payment_view.dart';
 import 'package:leacc_pos/app/modules/sales_order/views/sales_order_view.dart';
@@ -18,7 +18,8 @@ class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
   static  List<Widget> widgetOptions = <Widget>[
     LoginView(),
-    CustomerView(),
+    //CustomerView(),
+    CustomerListView(),
     SalesOrderView(),
     PaymentView(),
    // HomeView(),

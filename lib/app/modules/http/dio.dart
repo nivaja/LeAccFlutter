@@ -45,4 +45,16 @@ class DioClient {
       EasyLoading.dismiss();
     }
   }
+
+  Future<Response?> get(String endpoint, {Map<String, dynamic>? queryParameters}) async {
+//    try {
+      Response? response = await dio?.get(endpoint, queryParameters: queryParameters);
+      print(response);
+      return response;
+    // } on Exception catch (e) {
+    //   print(e.toString());
+    //
+    //  // getx.Get.defaultDialog(title: 'Error', middleText: e.toString());
+    // }
+  }
 }

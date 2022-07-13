@@ -30,6 +30,12 @@ class DioInterceptor extends InterceptorsWrapper{
 
     }
     switch(response.statusCode){
+      case 500:
+        getx.Get.defaultDialog(
+            title: response.statusMessage.toString() + response.data['exception'],
+            middleText: response.data["_server_messages"].toString()
+        );break;
+
       case 201:
         getDialog('Created'); break;
       case 401:
