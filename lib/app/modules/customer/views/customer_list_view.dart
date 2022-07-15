@@ -10,45 +10,48 @@ class CustomerListView extends GetView<CustomerController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(()=>CustomerController());
+    Get.lazyPut(() => CustomerController());
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CustomerListView'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () => showSearch(
-                  context: context,
-                  delegate: FrappeSearchDelegate(docType: 'Customer')),
-              icon: const Icon(Icons.search))
-        ],
-      ),
-      body:
-      Obx(()=>LazyLoadScrollView(
-          onEndOfPage: () => controller.endOfReults.value ? Get.snackbar('End of Results',''): controller.getCustomers(start: controller.customerList.length,length: 10) ,
-          child:  RefreshIndicator(
-            onRefresh: () async => controller.refresh(),
-            child: controller.isLoading.value? const Center(child: CircularProgressIndicator()):
-            ListView.builder(
-              itemCount: controller.customerList.length,
-              itemBuilder: (BuildContext context, int index){
-                return Card(
-                    child: ListTile(
-                      title: Text(controller.customerList[index].customerName??''),
-                      subtitle: Text(controller.customerList[index].territory??'',
-                      ),
-                    )
-                );
-              }
+        appBar: AppBar(
+          title: const Text('CustomerListView'),
+          centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () => showSearch(
+                    context: context,
+                    delegate: FrappeSearchDelegate(docType: 'Customer')),
+                icon: const Icon(Icons.search))
+          ],
+        ),
+        body: Obx(
+          () => LazyLoadScrollView(
+            onEndOfPage: () => controller.endOfReults.value
+                ? Get.snackbar('End of Results', '')
+                : controller.getCustomers(
+                    start: controller.customerList.length, length: 10),
+            child: RefreshIndicator(
+              onRefresh: () async => controller.refresh(),
+              child: ListView.builder(
+                  itemCount: controller.customerList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return true
+                        ? Card(
+                            child: ListTile(
+                            title: Text(
+                                controller.customerList[index].customerName ??
+                                    ''),
+                            subtitle: Text(
+                              controller.customerList[index].territory ?? '',
+                            ),
+                          ))
+                        : const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 30),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                  }),
+              //  const CircularProgressIndicator()
+            ),
           ),
-        ),
-
-        )
-
-        ),
-      );
-
+        ));
   }
-
-
 }

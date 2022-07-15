@@ -6,6 +6,7 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart' as getx;
+import 'package:get_storage/get_storage.dart';
 
 import 'package:path_provider/path_provider.dart';
 
@@ -22,12 +23,31 @@ class DioClient {
   DioClient._internal();
 
   static init(String baseUrl) async {
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String appDocPath = appDocDir.path;
-    var cookieJar =
-        PersistCookieJar(storage: FileStorage("$appDocPath/.cookies"));
+    var cookieJar = await getCookiePath();
     dio = Dio(BaseOptions(baseUrl: baseUrl))
       ..interceptors.addAll([CookieManager(cookieJar), DioInterceptor()]);
+    dio?.options.connectTimeout = 60 * 1000;
+    dio?.options.receiveTimeout = 60 * 1000;
+  }
+
+  static Future<PersistCookieJar> getCookiePath() async {
+    Directory appDocDir = await getApplicationSupportDirectory();
+    String appDocPath = appDocDir.path;
+    return PersistCookieJar(
+        ignoreExpires: true, storage: FileStorage("$appDocPath/.cookies/"));
+  }
+
+  static Future<String?> getCookies() async {
+    var cookieJar = await getCookiePath();
+    if (GetStorage().read('baseUrl') != null) {
+      var cookies = await cookieJar.loadForRequest(GetStorage().read('baseUrl'));
+
+      var cookie = CookieManager.getCookies(cookies);
+
+      return cookie;
+    } else {
+      return null;
+    }
   }
 
   Future<Response?> post(String endpoint, {Map<String, dynamic>? data}) async {

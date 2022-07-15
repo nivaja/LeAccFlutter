@@ -8,7 +8,8 @@ import 'app/modules/http/http.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async{
-  await GetStorage.init();
+  await GetStorage.init('Config');
+  await initApiConfig();
   runApp(
     GetMaterialApp(
       builder: EasyLoading.init(),
@@ -17,5 +18,5 @@ void main() async{
       getPages: AppPages.routes,
     ),
   );
-  await initApiConfig();
+
 }

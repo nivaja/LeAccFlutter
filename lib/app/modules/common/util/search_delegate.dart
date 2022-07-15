@@ -51,7 +51,8 @@ class FrappeSearchDelegate extends SearchDelegate{
                 title: Text(snapshot.data?[index]['value']),
                 subtitle: Text(snapshot.data?[index]['description']),
                 onTap: () {
-                  close(context, snapshot.data?[index]);
+                 // query=(snapshot.data?[index]['value']).toString();
+                  close(context, snapshot.data?[index]['value']);
                 },
               );
             },
