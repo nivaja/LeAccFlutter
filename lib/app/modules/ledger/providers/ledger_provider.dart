@@ -1,3 +1,4 @@
+import 'package:leacc_pos/app/modules/common/util/get_value.dart';
 import 'package:leacc_pos/app/modules/http/dio.dart';
 import 'package:leacc_pos/app/modules/ledger/ledger_model.dart';
 
@@ -10,7 +11,7 @@ class LedgerProvider {
     var requestParameters = {
       "report_name": "General Ledger",
       "filters": {
-        "company": "Pachali Bhairav Pani Prasodhan Udhyog",
+        "company": await FrappeGet.value('Company'),
         "from_date": fromDate,
         "to_date": toDate,
         "party_type": "Customer",

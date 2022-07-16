@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import 'package:get/get.dart';
 import 'package:leacc_pos/app/modules/common/util/search_delegate.dart';
@@ -30,29 +31,39 @@ class LedgerView extends GetView<LedgerController> {
         ],
       ),
       body: Obx(()=>
-      RefreshIndicator(
-        onRefresh: () async =>  controller.refresh(),
-        child: ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            children: [
-              controller.ledgerList.isEmpty? const SizedBox.shrink() : BalanceRow(controller.ledgerList.first, controller.ledgerList.last),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.ledgerList.length,
-                  itemBuilder:(BuildContext context, int index){
-                return index > 0 && index < controller.ledgerList.length-2?  Card(
-                  child: FrappeListTile(
-                    date:  controller.ledgerList[index].postingDate,
-                    title: controller.ledgerList[index].voucherType??'',
-                    subtitle: controller.ledgerList[index].voucherNo.toString(),
-                    trailingText: getDebitCredit(controller.ledgerList[index]),
-                  ),
-                ) : const SizedBox.shrink();
-              }),
-            ],
+      Column(
+        children: [
+          FormBuilderDateRangePicker(
+              name: 'date_range',
+              firstDate: DateTime.parse('2000-01-01'),
+              lastDate: DateTime.now(),
+              initialValue: controller.dateRange.value,
+              onChanged: (value) => controller.dateRange.value=value!),
+          Expanded(
+            child: RefreshIndicator(
+            onRefresh: () async =>  controller.refresh(),
+            child: Column(
+                children: [
+                  controller.ledgerList.isEmpty? const SizedBox.shrink() : BalanceRow(controller.ledgerList.first, controller.ledgerList.last),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.ledgerList.length,
+                      itemBuilder:(BuildContext context, int index){
+                    return index > 0 && index < controller.ledgerList.length-2?  Card(
+                      child: FrappeListTile(
+                        date:  controller.ledgerList[index].postingDate,
+                        title: controller.ledgerList[index].voucherType??'',
+                        subtitle: controller.ledgerList[index].voucherNo.toString(),
+                        trailingText: getDebitCredit(controller.ledgerList[index]),
+                      ),
+                    ) : const SizedBox.shrink();
+                  }),
+                ],
+              ),
+            ),
           ),
-        ),
+    ]
+      ),
       )
 
     );
