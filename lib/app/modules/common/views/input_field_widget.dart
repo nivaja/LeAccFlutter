@@ -12,10 +12,9 @@ class FrappeTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
-      controller: controller,
+        controller: controller,
         obscureText: obscureText??false,
         decoration: InputDecoration(
-
             fillColor: Colors.grey[100],
             filled: true,
             border: OutlineInputBorder(),

@@ -27,7 +27,7 @@ class CustomerFormView extends StatelessWidget {
                   //  FormBuilderTextField(name: 'customer_name', decoration: FrappeInputDecoration(label: 'Address', fieldIcons: const Icon(Icons.home))),
                    // FormBuilderTextField(name: 'customer_name', decoration: FrappeInputDecoration(label: 'PAN/VAT', fieldIcons: const Icon(Icons.app_registration))),
                    // FormBuilderTextField(name: 'customer_name', decoration: FrappeInputDecoration(label: 'Geo Location', fieldIcons: const Icon(Icons.location_on))),
-                    FormBuilderDropdown(name: 'customer_type', items: ['Individual']
+                    FormBuilderDropdown(name: 'customer_type', items: ['Individual', 'Company']
                         .map((e) => DropdownMenuItem(
                       value: e,
                       child: Text('$e'),
@@ -46,7 +46,7 @@ class CustomerFormView extends StatelessWidget {
                       child: Text('$e'),
                     ))
                         .toList(), decoration: FrappeInputDecoration(label: 'Territory', fieldIcons: const Icon(Icons.perm_identity))),
-                    FrappeNavigationButton(
+                    FrappeActionButton(
                       buttonText: 'Save',
                       onPressed: () {
                         _formKey.currentState!.saveAndValidate();

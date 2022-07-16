@@ -43,7 +43,7 @@ class LoginView extends GetView<LoginController> {
               SizedBox(
                 height: 30,
               ),
-              FrappeNavigationButton(buttonText: 'Login',onPressed: () async{
+              FrappeActionButton(buttonText: 'Login',onPressed: () async{
                 LoginProvider().post(server: serverController.text, usr: emailController.text, pwd: passwordController.text);
                 },
               ),
