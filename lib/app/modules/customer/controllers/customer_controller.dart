@@ -34,9 +34,8 @@ class CustomerController extends GetxController{
    try{
      isLoading(true);
      List<Customer> customers = await CustomerProvider().getCustomerList(start,length);
-     customers.length == 0 ? endOfReults(true) : endOfReults(false);
+     endOfReults(customers.isEmpty);
      customerList.addAll(customers);
-   //  return customers;
    }finally{
      isLoading(false);
    }

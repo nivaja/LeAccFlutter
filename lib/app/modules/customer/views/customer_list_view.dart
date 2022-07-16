@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:leacc_pos/app/modules/customer/controllers/customer_controller.dart';
+import 'package:leacc_pos/app/modules/customer/views/customer_form_view.dart';
 
 import '../../common/util/search_delegate.dart';
 
@@ -22,6 +23,10 @@ class CustomerListView extends GetView<CustomerController> {
                     delegate: FrappeSearchDelegate(docType: 'Customer')),
                 icon: const Icon(Icons.search))
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Text("+"),
+          onPressed: ()=> Get.to(CustomerFormView()),
         ),
         body: Obx(
           () => LazyLoadScrollView(

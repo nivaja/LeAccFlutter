@@ -17,4 +17,11 @@ class CustomerProvider {
     Response? response = await DioClient().get('/resource/Customer',queryParameters: queryPatameters);
     return List.from(response?.data["data"]).map((e) => Customer.fromJson(e)).toList();
   }
+
+  saveCustomer(Map<String,dynamic> customerJson){
+    var data={
+      "data":customerJson
+    };
+    DioClient().post('/resource/Customer',data: data);
+  }
 }
