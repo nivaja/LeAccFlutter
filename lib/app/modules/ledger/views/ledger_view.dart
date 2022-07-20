@@ -31,7 +31,9 @@ class LedgerView extends GetView<LedgerController> {
         ],
       ),
       body: Obx(()=>
-      Column(
+          RefreshIndicator(
+            onRefresh: () async =>  controller.refresh(),
+            child: Column(
         children: [
           FormBuilderDateRangePicker(
               name: 'date_range',
@@ -40,9 +42,7 @@ class LedgerView extends GetView<LedgerController> {
               initialValue: controller.dateRange.value,
               onChanged: (value) => controller.dateRange.value=value!),
           Expanded(
-            child: RefreshIndicator(
-            onRefresh: () async =>  controller.refresh(),
-            child: Column(
+            child:  Column(
                 children: [
                   controller.ledgerList.isEmpty? const SizedBox.shrink() : BalanceRow(controller.ledgerList.first, controller.ledgerList.last),
                   ListView.builder(
@@ -61,9 +61,9 @@ class LedgerView extends GetView<LedgerController> {
                 ],
               ),
             ),
-          ),
+
     ]
-      ),
+      )),
       )
 
     );

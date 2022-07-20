@@ -11,7 +11,7 @@ class CustomerProvider {
         "limit_page_length":length,// returns 20 records at a time
         "limit_start":start, //Starting index of the record
        // "order_by":"name", //Orders records based on given field
-        "fields":jsonEncode(["docstatus","name","customer_name","customer_group","mobile_no","territory","email_id"]) // returns listed fields data
+        "fields":jsonEncode(["docstatus","name","customer_name","customer_group","mobile_no","territory","email_id"]) // reuturns listed fields data
         //"filters":[["posting_date", "=", "2022-06-21"]] //returns data matching filter query
       };
     Response? response = await DioClient().get('/resource/Customer',queryParameters: queryPatameters);

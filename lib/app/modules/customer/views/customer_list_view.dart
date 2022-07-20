@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_initicon/flutter_initicon.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:leacc_pos/app/modules/customer/controllers/customer_controller.dart';
@@ -42,6 +43,7 @@ class CustomerListView extends GetView<CustomerController> {
                     return true
                         ? Card(
                             child: ListTile(
+                              leading: Initicon(text: controller.customerList[index].customerName),
                             title: Text(
                                 controller.customerList[index].customerName ??
                                     ''),

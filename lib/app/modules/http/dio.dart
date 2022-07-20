@@ -39,8 +39,8 @@ class DioClient {
 
   static Future<String?> getCookies() async {
     var cookieJar = await getCookiePath();
-    if (GetStorage().read('baseUrl') != null) {
-      var cookies = await cookieJar.loadForRequest(GetStorage().read('baseUrl'));
+    if (GetStorage('Config').read('baseUrl') != null) {
+      var cookies = await cookieJar.loadForRequest(Uri.parse(GetStorage('Config').read('baseUrl')));
 
       var cookie = CookieManager.getCookies(cookies);
 

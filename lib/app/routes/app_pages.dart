@@ -45,7 +45,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SALES,
-      page: () => const SalesView(),
+      page: () =>  SalesView(),
       binding: SalesBinding(),
     ),
     GetPage(

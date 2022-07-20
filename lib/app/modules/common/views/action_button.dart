@@ -19,7 +19,7 @@ class FrappeActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      child: SizedBox(
+      child: Expanded(
         // width: actionButtonWidth,
         // height: actionButtonHeight,
         child: buttonIcons != null
@@ -40,7 +40,7 @@ class FrappeActionButton extends StatelessWidget {
                 ),
               )
             : ElevatedButton(
-                onPressed: () {},
+                onPressed:()=> onPressed(),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue[600],
                   shape: RoundedRectangleBorder(

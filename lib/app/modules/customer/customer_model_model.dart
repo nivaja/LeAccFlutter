@@ -27,9 +27,9 @@ class Customer {
     customerName = json['customer_name'];
     customerType = json['customer_type'];
     customerGroup = json['customer_group'];
-    phoneNumber = json['phone_number'];
+    phoneNumber = json['mobile_no'];
     territory = json['territory'];
-    email = json['email'];
+    email = json['email_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -40,9 +40,9 @@ class Customer {
     data['customer_name'] = customerName;
     data['customer_type'] = customerType;
     data['customer_group'] = customerGroup;
-    data['phone_number'] = phoneNumber;
+    data['mobile_no'] = phoneNumber;
     data['territory'] = territory;
-    data['email'] = email;
+    data['email_id'] = email;
     return data;
   }
 }
