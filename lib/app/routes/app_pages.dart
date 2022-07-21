@@ -38,11 +38,11 @@ class AppPages {
       page: () => const CustomerListView(),
       binding: CustomerBinding(),
     ),
-    GetPage(
-      name: _Paths.PAYMENT,
-      page: () => const PaymentView(),
-      binding: PaymentBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.PAYMENT,
+    //   page: () => const PaymentView(),
+    //   binding: PaymentBinding(),
+    // ),
     GetPage(
       name: _Paths.SALES,
       page: () =>  SalesView(),

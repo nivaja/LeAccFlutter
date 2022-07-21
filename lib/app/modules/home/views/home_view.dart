@@ -21,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
     //CustomerView(),
     CustomerListView(),
     SalesOrderView(),
-    PaymentView(),
+    //PaymentView(),
    // HomeView(),
     SalesView(),
     LedgerView()
