@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:leacc_pos/app/modules/common/views/item_card.dart';
 import 'package:leacc_pos/app/modules/sales/controllers/sales_controller.dart';
 import 'package:leacc_pos/app/modules/sales/model/sales_model.dart';
+import 'package:leacc_pos/app/modules/sales/views/sales_payment_view.dart';
 
 import '../../common/views/action_button.dart';
 import '../../common/views/button.dart';
@@ -24,7 +25,12 @@ class AddSalesItem extends GetView<SalesItemController> {
       ),
       body: Column(children: [
         FrappeTextField('Search Products...', const Icon(Icons.abc)),
-        FrappeButtonField('Clear', const TextStyle(color: Colors.red), 100, 40),
+        Row(
+          children: [
+            FrappeButtonField(buttonText: 'Clear',buttonTextColor:  const TextStyle(color: Colors.red),onPressed:()=>controller.clear(),),
+            Obx(() => Text(controller.total.value.toString()))
+          ],
+        ),
         Expanded(
           child: Obx(
             () => GridView.builder(
@@ -59,7 +65,10 @@ class AddSalesItem extends GetView<SalesItemController> {
             ),
             FrappeActionButton(
                 buttonText: 'Validate',
-                onPressed: () {},
+                onPressed: () {
+                  salesInvoice.items = controller.selectedItems.toList();
+                  Get.to(()=>SalesPaymentView(),arguments: salesInvoice);
+                },
                 buttonIcons: const Icon(Icons.arrow_back),
                 iconDirectionForButton: TextDirection.rtl),
           ],

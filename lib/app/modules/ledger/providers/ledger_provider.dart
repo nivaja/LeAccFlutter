@@ -11,7 +11,7 @@ class LedgerProvider {
     var requestParameters = {
       "report_name": "General Ledger",
       "filters": {
-        "company": await FrappeGet.value('Company'),
+        "company": await FrappeGet.value(docType: 'Company'),
         "from_date": fromDate,
         "to_date": toDate,
         "party_type": "Customer",

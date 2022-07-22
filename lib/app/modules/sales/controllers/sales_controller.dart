@@ -8,6 +8,7 @@ class SalesItemController extends GetxController {
 
   var itemList = <SalesItem>[].obs;
   var selectedItems = <SalesItem>{}.obs;
+  var total=0.0.obs;
 
   @override
   void onInit() {
@@ -31,23 +32,22 @@ class SalesItemController extends GetxController {
   }
 
   void addToCart(SalesItem selectedItem) {
-
     selectedItems.add(selectedItem);
-    // int index = selectedItems
-    //     .indexWhere((salesItem) => salesItem.itemCode == selectedItem.itemCode);
-    // if (index != -1) {
-    //   selectedItems[index].selectedQuantity=selectedItem.selectedQuantity;
-    //
-    // } else {
-    //
-    //   selectedItems.add(selectedItem);
-    // }
     itemList.refresh();
-    selectedItems.forEach((element) {
-      print({
-        "item":element.itemCode,
-        "quantity":element.selectedQuantity
-      });
+    getTotalAmount();
+  }
+
+  void getTotalAmount(){
+     total.value = selectedItems.fold(0.0, (previousValue, element){
+      return previousValue + (element.selectedQuantity * element.priceListRate!);
     });
+    update();
+  }
+
+  void clear(){
+    selectedItems.clear();
+    total.value=0;
+    itemList.forEach((element)=>element.selectedQuantity=0);
+    itemList.refresh();
   }
 }

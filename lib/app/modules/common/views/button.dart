@@ -5,8 +5,9 @@ class FrappeButtonField extends StatelessWidget {
   late TextStyle buttonTextColor;
   double buttonWidth;
   double buttonHeight;
+  Function onPressed;
 
-  FrappeButtonField(this.buttonText, this.buttonTextColor, this.buttonWidth, this.buttonHeight);
+  FrappeButtonField({required this.buttonText, required this.buttonTextColor, this.buttonWidth=100, this.buttonHeight=40, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class FrappeButtonField extends StatelessWidget {
           width: buttonWidth,
           height: buttonHeight,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed:()=> onPressed(),
             style: ElevatedButton.styleFrom(
               primary: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
